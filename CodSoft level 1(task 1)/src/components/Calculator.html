@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assests/css/Calculator.css">
+  <title>Calculator</title>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <input type="text" id="display" value="" readonly>
+      <span class="result" id="result"></span>
+    </div>
+    <div class="buttons">
+      <button onclick="handleButtonClick('7')">7</button>
+      <button onclick="handleButtonClick('8')">8</button>
+      <button onclick="handleButtonClick('9')">9</button>
+      <button onclick="handleButtonClick('+')">+</button>
+      <button onclick="handleButtonClick('4')">4</button>
+      <button onclick="handleButtonClick('5')">5</button>
+      <button onclick="handleButtonClick('6')">6</button>
+      <button onclick="handleButtonClick('-')">-</button>
+      <button onclick="handleButtonClick('1')">1</button>
+      <button onclick="handleButtonClick('2')">2</button>
+      <button onclick="handleButtonClick('3')">3</button>
+      <button onclick="handleButtonClick('*')">*</button>
+      <button onclick="handleButtonClick('0')">0</button>
+      <button onclick="handleButtonClick('00')">00</button>
+      <button onclick="handleButtonClick('.')">.</button>
+      <button onclick="handleButtonClick('/')">/</button>
+      <button onclick="handleButtonClick('DEL')">DEL</button>
+      <button onclick="handleButtonClick('AC')">AC</button>
+      <button onclick="handleButtonClick('=')">=</button>
+    </div>
+  </div>
+
+  <script>
+    const displayElement = document.getElementById("display");
+    const resultElement = document.getElementById("result");
+    let display = "";
+    let result = "";
+
+    function handleButtonClick(value) {
+      if (value === "=") {
+        try {
+          result = eval(display);
+          resultElement.textContent = result;
+        } catch (error) {
+          result = "Error";
+          resultElement.textContent = result;
+        }
+      } else if (value === "AC") {
+        display = "";
+        result = "";
+        displayElement.value = display;
+        resultElement.textContent = result;
+      } else if (value === "DEL") {
+        display = display.slice(0, -1);
+        displayElement.value = display;
+      } else {
+        display += value;
+        displayElement.value = display;
+      }
+    }
+  </script>
+</body>
+</html>
